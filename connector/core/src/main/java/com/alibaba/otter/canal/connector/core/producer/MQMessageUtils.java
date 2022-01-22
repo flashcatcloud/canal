@@ -583,9 +583,10 @@ public class MQMessageUtils {
             int i = item.indexOf(":");
             if (i > -1) {
                 String topic = item.substring(0, i).trim();
-                if(topic.contains(".")) {
-                    String[] topicPrefix = StringUtils.split(topic, ".");
-                    topic = topicPrefix[0] + "." + name;
+                String[] topicPrefix = topic.split("\\.\\.");
+                if (topicPrefix.length > 1) {
+                    topic = topicPrefix[0] + ".." + topicPrefix[1] + ".." +
+                            StringUtils.replace(name, ".", "..");
                 }
                 String topicConfigs = item.substring(i + 1).trim();
                 if (matchDynamicTopic(name, topicConfigs)) {
