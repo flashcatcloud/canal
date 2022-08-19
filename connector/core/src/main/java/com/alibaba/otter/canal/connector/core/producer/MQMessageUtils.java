@@ -584,7 +584,7 @@ public class MQMessageUtils {
             if (i > -1) {
                 String topic = item.substring(0, i).trim();
                 String[] topicPrefix = topic.split("\\.\\.");
-                if (topicPrefix.length > 1) {
+                if (topicPrefix.length > 3) {
                     topic = topicPrefix[0] + ".." + topicPrefix[1] + ".." +
                             StringUtils.replace(name, ".", "..");
                 }
